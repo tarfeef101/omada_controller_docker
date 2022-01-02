@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  omada:
+    build: .
+    container_name: omada
+    image: tarfeef101/omada_controller_docker
+    stop_grace_period: 30s
+    ports:
+      - '8088:8088' 
+      - '8043:8043'
+      - '8843:8843'
+      - '29810-29813:29810-29813'
+      - '29810-29813:29810-29813/udp'
+    volumes:
+      - './data:/opt/tplink/EAPController/data'
