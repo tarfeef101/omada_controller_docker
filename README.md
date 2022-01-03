@@ -10,13 +10,13 @@ It also has some big and old dependencies, so Docker is a great way to isolate t
 ## Usage
 Just run `docker-compose up -d` and you'll be off to the races. Make sure to create the volume directory `mkdir -p data/db` (the subdir must exist too, sadly). That, or edit the volume config to use named volumes and you don't have to care.
 
+Also you can find this on Docker Hub [here](https://hub.docker.com/r/tarfeef101/omada_controller)
+
 ### Upgrading
 Probably just `docker-compose down`, get/build the new image with a new URL/tag, and `docker-compose up -d` again. Have I tested this? No, no I have not. But it probably works.
 
 ## Limitations/Future Upgrades
-- put this on docker hub
-- tag things for new releases, and make an action to push images on new omada releases (might be hard to source, they release terribly)
-  - paramaterize the URLs/tags like a smart person
+- modify action to push images on new omada releases (might be hard to source, they release terribly)
 - 5.0 of this controller should bring WAY newer deps, so that's important to get on top of once it's out
 - maybe add nginx and certs if I care to do that?
 - timeout of 30s is needed for graceful shutdowns, otherwise it will crash, and it is very fault-intolerant
