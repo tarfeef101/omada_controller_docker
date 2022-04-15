@@ -2,7 +2,7 @@ FROM debian:10-slim as builder
 RUN apt update && \
     apt -y upgrade && \
     apt -y install make gcc default-jdk-headless curl libcap-dev && \
-    curl -fsSL https://dlcdn.apache.org//commons/daemon/source/commons-daemon-1.2.4-src.tar.gz -o /opt/apache.tgz && \
+    curl -fsSL https://dlcdn.apache.org/commons/daemon/source/commons-daemon-1.3.0-src.tar.gz -o /opt/apache.tgz && \
     tar -xzf /opt/apache.tgz --strip-components=1 -C /opt && \
     rm /opt/apache.tgz
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
