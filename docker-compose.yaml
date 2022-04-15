@@ -7,8 +7,8 @@ services:
       args:
         YEAR: "2022"
         MONTH: "01"
-        DAY: "07"
-        VERSION: "5.0.29"
+        DAY: "20"
+        VERSION: "5.0.30"
     container_name: omada
     image: tarfeef101/omada_controller:5.0.29
     stop_grace_period: 30s
