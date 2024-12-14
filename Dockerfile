@@ -2,7 +2,7 @@ FROM debian:10-slim as builder
 RUN apt update && \
     apt -y upgrade && \
     apt -y install make gcc default-jdk-headless curl libcap-dev && \
-    curl -fsSL https://dlcdn.apache.org/commons/daemon/source/commons-daemon-1.3.0-src.tar.gz -o /opt/apache.tgz && \
+    curl -fsSL https://dlcdn.apache.org/commons/daemon/source/commons-daemon-1.4.0-src.tar.gz -o /opt/apache.tgz && \
     tar -xzf /opt/apache.tgz --strip-components=1 -C /opt && \
     rm /opt/apache.tgz
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
@@ -10,7 +10,7 @@ WORKDIR /opt/src/native/unix
 RUN ./configure && \
     make
 
-FROM debian:10-slim
+FROM debian:12-slim
 # controller has old deps
 # install deps other than mongo
 # then mongo
@@ -18,8 +18,8 @@ FROM debian:10-slim
 RUN apt update && \
     apt -y upgrade && \
     apt -y install curl libc6 procps net-tools libcap2 gnupg default-jre-headless && \
-    curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add - && \
-    echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.4 main" > /etc/apt/sources.list.d/mongodb-org-5.0.list && \
+    curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | gpg -o /usr/share/keyrings/mongodb-server-8.0.gpg --dearmor && \
+    echo ""deb [ signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] http://repo.mongodb.org/apt/debian bookworm/mongodb-org/8.0 main"" > /etc/apt/sources.list.d/mongodb-org-8.0.list && \
     apt update && \
     apt install -y mongodb-org && \
     apt -y purge gnupg && \

@@ -5,12 +5,12 @@ services:
     build:
       context: .
       args:
-        YEAR: "2022"
-        MONTH: "01"
-        DAY: "20"
-        VERSION: "5.0.30"
+        YEAR: "2024"
+        MONTH: "11"
+        DAY: "15"
+        VERSION: "5.14.32.4"
     container_name: omada
-    image: tarfeef101/omada_controller:5.0.30
+    image: tarfeef101/omada_controller:5.14.32.4
     stop_grace_period: 30s
     ports:
       - '8088:8088' 
